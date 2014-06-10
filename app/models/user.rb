@@ -28,4 +28,9 @@ class User < ActiveRecord::Base
   def active_for_authentication?
     super && !deleted_at
   end
+
+  def authenticatable_salt
+    encrypted_password[0,29] if encrypted_password
+  end
+
 end
